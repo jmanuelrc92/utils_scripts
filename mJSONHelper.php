@@ -34,6 +34,10 @@ function mArraySort(array $data, $assoc = null)
 $masterArray = json_decode(file_get_contents("files/SPmaster.JSON"), true);
 $issueArray = json_decode(file_get_contents("files/SPissue.JSON"), true);
 
-$mergedArray = mArrayMerge($masterArray, $issueArray);
-$sortedArray = mArraySort($mergedArray, true);
-file_put_contents("files/mergedJSON.json", json_encode($sortedArray, JSON_PRETTY_PRINT));
+$masterArray = mArraySort($masterArray, true);
+$issueArray = mArraySort($issueArray, true);
+$masterArray = mArrayMerge($masterArray, $issueArray);
+
+$masterArray = mArraySort($masterArray, true);
+
+file_put_contents("files/mergedJSON.json", json_encode($masterArray, JSON_PRETTY_PRINT));
